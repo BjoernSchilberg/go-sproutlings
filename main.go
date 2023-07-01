@@ -18,6 +18,9 @@ var (
 	playerDest rl.Rectangle
 
 	playerSpeed float32 = 3
+
+	musicPaused bool
+	music       rl.Music
 )
 
 func drawScence() {
@@ -38,10 +41,19 @@ func input() {
 	if rl.IsKeyDown(rl.KeyD) || rl.IsKeyDown(rl.KeyRight) {
 		playerDest.X += playerSpeed
 	}
+	if rl.IsKeyPressed(rl.KeyQ) {
+		musicPaused = !musicPaused
+	}
 
 }
 func update() {
 	running = !rl.WindowShouldClose()
+	rl.UpdateMusicStream(music)
+	if musicPaused {
+		rl.PauseMusicStream(music)
+	} else {
+		rl.ResumeMusicStream(music)
+	}
 }
 func render() {
 
@@ -66,11 +78,18 @@ func init() {
 	playerSprite = rl.LoadTexture("res/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png")
 	playerSrc = rl.NewRectangle(0, 0, 48, 48)
 	playerDest = rl.NewRectangle(200, 200, 100, 100)
+
+	rl.InitAudioDevice()
+	music = rl.LoadMusicStream("res/Avery's Farm.mp3")
+	musicPaused = false
+	rl.PlayMusicStream(music)
 }
 
 func quit() {
 	rl.UnloadTexture(grassSprite)
 	rl.UnloadTexture(playerSprite)
+	rl.UnloadMusicStream(music)
+	rl.CloseAudioDevice()
 	rl.CloseWindow()
 }
 
