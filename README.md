@@ -1,6 +1,6 @@
 # Go & Raylib Tutorial
 
-https://www.youtube.com/playlist?list=PLVotA8ycjnCsy30WQCwVU5RrZkt4lLgY5
+<https://www.youtube.com/playlist?list=PLVotA8ycjnCsy30WQCwVU5RrZkt4lLgY5>
 
 ## Steps
 
@@ -15,13 +15,11 @@ https://www.youtube.com/playlist?list=PLVotA8ycjnCsy30WQCwVU5RrZkt4lLgY5
 
 ## Resources
 
-https://go.dev/
-https://www.raylib.com/index.html
-https://github.com/gen2brain/raylib-go
-https://cupnooble.itch.io/sprout-lands-asset-pack
-https://code.visualstudio.com/
-
-
+- <https://go.dev/>
+- <https://www.raylib.com/index.html>
+- <https://github.com/gen2brain/raylib-go>
+- <https://cupnooble.itch.io/sprout-lands-asset-pack>
+- <https://code.visualstudio.com/>
 
 ## 1
 
