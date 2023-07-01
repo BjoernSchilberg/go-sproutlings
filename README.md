@@ -4,14 +4,14 @@ https://www.youtube.com/playlist?list=PLVotA8ycjnCsy30WQCwVU5RrZkt4lLgY5
 
 ## Steps
 
-1 get sprites, install go/raylib, create window
-2 keyboard input, draw image, player, walking
-3 animations, font, music & audio
-4 tileset, world, collision
-5 inventory
-6 farming
-7 trading
-8 saving, loadling, menu
+1. get sprites, install go/raylib, create window
+2. keyboard input, draw image, player, walking
+3. animations, font, music & audio
+4. tileset, world, collision
+5. inventory
+6. farming
+7. trading
+8. saving, loading, menu
 
 ## Resources
 
