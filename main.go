@@ -16,6 +16,8 @@ var (
 
 	playerSrc  rl.Rectangle
 	playerDest rl.Rectangle
+
+	playerSpeed float32 = 3
 )
 
 func drawScence() {
@@ -23,7 +25,21 @@ func drawScence() {
 	rl.DrawTexturePro(playerSprite, playerSrc, playerDest, rl.NewVector2(playerDest.Width, playerDest.Height), 0, rl.White)
 
 }
-func input() {}
+func input() {
+	if rl.IsKeyDown(rl.KeyW) || rl.IsKeyDown(rl.KeyUp) {
+		playerDest.Y -= playerSpeed
+	}
+	if rl.IsKeyDown(rl.KeyS) || rl.IsKeyDown(rl.KeyDown) {
+		playerDest.Y += playerSpeed
+	}
+	if rl.IsKeyDown(rl.KeyA) || rl.IsKeyDown(rl.KeyLeft) {
+		playerDest.X -= playerSpeed
+	}
+	if rl.IsKeyDown(rl.KeyD) || rl.IsKeyDown(rl.KeyRight) {
+		playerDest.X += playerSpeed
+	}
+
+}
 func update() {
 	running = !rl.WindowShouldClose()
 }
