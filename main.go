@@ -66,8 +66,7 @@ func input() {
 func update() {
 	running = !rl.WindowShouldClose()
 
-	// When player stops moving set to the first (0) frame
-	playerSrc.X = 0
+	playerSrc.X = playerSrc.Width * float32(playerFrame)
 
 	if playerMoving {
 		if playerUp {
@@ -85,13 +84,25 @@ func update() {
 		if frameCount%8 == 1 {
 			playerFrame++
 		}
-		playerSrc.X = playerSrc.Width * float32(playerFrame)
+		// Players idle animation
+		// Make the players frame change every 45 ticks
+	} else if frameCount%45 == 1 {
+		playerFrame++
 
 	}
+
 	frameCount++
 	if playerFrame > 3 {
 		playerFrame = 0
 	}
+
+	// Players idle animation
+	// it only has two frames
+	if !playerMoving && playerFrame > 1 {
+		playerFrame = 0
+	}
+	playerSrc.X = playerSrc.Width * float32(playerFrame)
+
 	playerSrc.Y = playerSrc.Height * float32(playerDir)
 
 	rl.UpdateMusicStream(music)
