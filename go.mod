@@ -1,4 +1,4 @@
-module main
+module sproutlings
 
 go 1.19
 
