@@ -66,7 +66,7 @@ func input() {
 func update() {
 	running = !rl.WindowShouldClose()
 
-	// When player stops moving set to the first (0) tile
+	// When player stops moving set to the first (0) frame
 	playerSrc.X = 0
 
 	if playerMoving {
@@ -111,10 +111,10 @@ func render() {
 
 	rl.ClearBackground(bkgColor)
 	rl.BeginMode2D(cam)
-	rl.DrawText("Congrats! You created your first window!", 190, 200, 20, rl.LightGray)
-	drawScence()
-	rl.EndMode2D()
 
+	drawScence()
+
+	rl.EndMode2D()
 	rl.EndDrawing()
 }
 
@@ -138,6 +138,7 @@ func init() {
 
 	// Note: Character stays in the center of the screen.
 	cam = rl.NewCamera2D(rl.NewVector2(float32(screenWidth/2), float32(screenHeight/2)), rl.NewVector2(float32(playerDest.X-(playerDest.Width/2)), float32(playerDest.Y-(playerDest.Height/2))), 0.0, 1.0)
+	cam.Zoom = 2.0
 
 }
 
