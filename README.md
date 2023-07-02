@@ -21,7 +21,9 @@
 - <https://cupnooble.itch.io/sprout-lands-asset-pack>
 - <https://code.visualstudio.com/>
 - <https://soundcloud.com/harry-makes/averys-farm9>
-
+- <https://www.raylib.com/examples/textures/loader.html?name=textures_rectangle>
+- <https://www.raylib.com/examples/textures/loader.html?name=textures_sprite_anim>
+  
 ## 1
 
 ```shell
