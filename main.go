@@ -66,6 +66,9 @@ func input() {
 func update() {
 	running = !rl.WindowShouldClose()
 
+	// When player stops moving set to the first (0) tile
+	playerSrc.X = 0
+
 	if playerMoving {
 		if playerUp {
 			playerDest.Y -= playerSpeed
@@ -82,13 +85,13 @@ func update() {
 		if frameCount%8 == 1 {
 			playerFrame++
 		}
+		playerSrc.X = playerSrc.Width * float32(playerFrame)
 
 	}
 	frameCount++
 	if playerFrame > 3 {
 		playerFrame = 0
 	}
-	playerSrc.X = playerSrc.Width * float32(playerFrame)
 	playerSrc.Y = playerSrc.Height * float32(playerDir)
 
 	rl.UpdateMusicStream(music)
