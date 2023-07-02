@@ -132,7 +132,8 @@ func render() {
 func init() {
 
 	rl.InitWindow(screenWidth, screenHeight, "Sproutlings")
-	rl.SetExitKey(0)
+	// Set ExitKey to ESC
+	rl.SetExitKey(256)
 	//defer rl.CloseWindow()
 
 	rl.SetTargetFPS(60)
