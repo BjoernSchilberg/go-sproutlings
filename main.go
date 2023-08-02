@@ -44,7 +44,7 @@ var (
 	srcMap     []string
 	mapW, mapH int
 
-	playerSpeed float32 = 3
+	playerSpeed float32 = 1.4
 
 	musicPaused bool
 	music       rl.Music
@@ -78,6 +78,13 @@ func drawScence() {
 			}
 			if srcMap[i] == "t" {
 				tex = tilledSprite
+			}
+
+			if srcMap[i] == "h" || srcMap[i] == "f" {
+				// draw grass below the house and the fence sprite
+				tileSrc.X = 0
+				tileSrc.Y = 0
+				rl.DrawTexturePro(grassSprite, tileSrc, tileDest, rl.NewVector2(tileDest.Width, tileDest.Height), 0, rl.White)
 			}
 
 			tileSrc.X = tileSrc.Width * float32((tileMap[i]-1)%int(tex.Width/int32(tileSrc.Width)))
@@ -233,7 +240,7 @@ func init() {
 
 	playerSprite = rl.LoadTexture("res/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png")
 	playerSrc = rl.NewRectangle(0, 0, 48, 48)
-	playerDest = rl.NewRectangle(200, 200, 100, 100)
+	playerDest = rl.NewRectangle(200, 200, 60, 60)
 
 	rl.InitAudioDevice()
 	music = rl.LoadMusicStream("res/Avery's Farm.mp3")
@@ -242,9 +249,9 @@ func init() {
 
 	// Note: Character stays in the center of the screen.
 	cam = rl.NewCamera2D(rl.NewVector2(float32(screenWidth/2), float32(screenHeight/2)), rl.NewVector2(float32(playerDest.X-(playerDest.Width/2)), float32(playerDest.Y-(playerDest.Height/2))), 0.0, 1.0)
-	cam.Zoom = 2.0
+	cam.Zoom = 3.0
 
-	loadMap("one.map")
+	loadMap("two.map")
 
 }
 
