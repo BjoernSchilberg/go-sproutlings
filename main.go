@@ -1,6 +1,13 @@
 package main
 
-import rl "github.com/gen2brain/raylib-go/raylib"
+import (
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+
+	rl "github.com/gen2brain/raylib-go/raylib"
+)
 
 const (
 	// Based on the image in the asset pack
@@ -148,12 +155,31 @@ func render() {
 	rl.EndDrawing()
 }
 
-func loadMap() {
+func loadMap(mapFile string) {
 
-	mapW = 5
-	mapH = 5
-	for i := 0; i < (mapW * mapH); i++ {
-		tileMap = append(tileMap, 1)
+	file, err := os.ReadFile(mapFile)
+	if err != nil {
+		fmt.Println("Error loading map", err)
+		os.Exit(1)
+	}
+	remNewLines := strings.Replace(string(file), "\n", " ", -1)
+	sliced := strings.Split(remNewLines, " ")
+	mapW = -1
+	mapH = -1
+
+	for i := 0; i < len(sliced); i++ {
+		s, _ := strconv.ParseInt(sliced[i], 10, 64)
+		m := int(s)
+		if mapW == -1 {
+			mapW = m
+		} else if mapH == -1 {
+			mapH = m
+		} else {
+			tileMap = append(tileMap, m)
+		}
+	}
+	if len(tileMap) > mapW*mapH {
+		tileMap = tileMap[:len(tileMap)-1]
 	}
 
 }
@@ -185,7 +211,7 @@ func init() {
 	cam = rl.NewCamera2D(rl.NewVector2(float32(screenWidth/2), float32(screenHeight/2)), rl.NewVector2(float32(playerDest.X-(playerDest.Width/2)), float32(playerDest.Y-(playerDest.Height/2))), 0.0, 1.0)
 	cam.Zoom = 2.0
 
-	loadMap()
+	loadMap("one.map")
 
 }
 
