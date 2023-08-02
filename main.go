@@ -16,9 +16,15 @@ const (
 )
 
 var (
-	running     = true
-	bkgColor    = rl.NewColor(147, 211, 196, 255)
-	grassSprite rl.Texture2D
+	running      = true
+	bkgColor     = rl.NewColor(147, 211, 196, 255)
+	grassSprite  rl.Texture2D
+	hillSprite   rl.Texture2D
+	fenceSprite  rl.Texture2D
+	houseSprite  rl.Texture2D
+	waterSprite  rl.Texture2D
+	tilledSprite rl.Texture2D
+	tex          rl.Texture2D
 
 	playerSprite rl.Texture2D
 
@@ -54,10 +60,30 @@ func drawScence() {
 		if tileMap[i] != 0 {
 			tileDest.X = tileDest.Width * float32(i%mapW)
 			tileDest.Y = tileDest.Height * float32(i/mapW)
-			tileSrc.X = tileSrc.Width * float32((tileMap[i]-1)%int(grassSprite.Width/int32(tileSrc.Width)))
-			tileSrc.Y = tileSrc.Height * float32((tileMap[i]-1)/int(grassSprite.Width/int32(tileSrc.Width)))
 
-			rl.DrawTexturePro(grassSprite, tileSrc, tileDest, rl.NewVector2(tileDest.Width, tileDest.Height), 0, rl.White)
+			if srcMap[i] == "g" {
+				tex = grassSprite
+			}
+			if srcMap[i] == "l" {
+				tex = hillSprite
+			}
+			if srcMap[i] == "f" {
+				tex = fenceSprite
+			}
+			if srcMap[i] == "h" {
+				tex = houseSprite
+			}
+			if srcMap[i] == "w" {
+				tex = waterSprite
+			}
+			if srcMap[i] == "t" {
+				tex = tilledSprite
+			}
+
+			tileSrc.X = tileSrc.Width * float32((tileMap[i]-1)%int(tex.Width/int32(tileSrc.Width)))
+			tileSrc.Y = tileSrc.Height * float32((tileMap[i]-1)/int(tex.Width/int32(tileSrc.Width)))
+
+			rl.DrawTexturePro(tex, tileSrc, tileDest, rl.NewVector2(tileDest.Width, tileDest.Height), 0, rl.White)
 		}
 	}
 	rl.DrawTexturePro(playerSprite, playerSrc, playerDest, rl.NewVector2(playerDest.Width, playerDest.Height), 0, rl.White)
@@ -174,8 +200,10 @@ func loadMap(mapFile string) {
 			mapW = m
 		} else if mapH == -1 {
 			mapH = m
-		} else {
+		} else if i < mapW*mapH+2 {
 			tileMap = append(tileMap, m)
+		} else {
+			srcMap = append(srcMap, sliced[i])
 		}
 	}
 	if len(tileMap) > mapW*mapH {
@@ -194,6 +222,11 @@ func init() {
 	rl.SetTargetFPS(60)
 
 	grassSprite = rl.LoadTexture("res/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/old tiles/Grass.png")
+	hillSprite = rl.LoadTexture("res/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/old tiles/Hills.png")
+	fenceSprite = rl.LoadTexture("res/Sprout Lands - Sprites - Basic pack/Tilesets/Fences.png")
+	houseSprite = rl.LoadTexture("res/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden House.png")
+	waterSprite = rl.LoadTexture("res/Sprout Lands - Sprites - Basic pack/Tilesets/Water.png")
+	tilledSprite = rl.LoadTexture("res/Sprout Lands - Sprites - Basic pack/Tilesets/ground tiles/old tiles/Tilled Dirt.png")
 
 	tileDest = rl.NewRectangle(0, 0, 16, 16)
 	tileSrc = rl.NewRectangle(0, 0, 16, 16)
