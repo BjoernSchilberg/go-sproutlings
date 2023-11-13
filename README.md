@@ -13,18 +13,7 @@
 7. trading
 8. saving, loading, menu
 
-## Resources
-
-- <https://go.dev/>
-- <https://www.raylib.com/index.html>
-- <https://github.com/gen2brain/raylib-go>
-- <https://cupnooble.itch.io/sprout-lands-asset-pack>
-- <https://code.visualstudio.com/>
-- <https://soundcloud.com/harry-makes/averys-farm9>
-- <https://www.raylib.com/examples/textures/loader.html?name=textures_rectangle>
-- <https://www.raylib.com/examples/textures/loader.html?name=textures_sprite_anim>
-  
-## 1
+### 1
 
 ```shell
 mkdir sprouts
@@ -60,3 +49,23 @@ func main() {
 go build
 ./main
 ```
+
+## Build for RGB30 (JELOS).
+
+Build for [RGB30](https://powkiddy.com/products/pre-sale-powkiddy-rgb30-rk3566-handheld-game-console-built-in-wifi)
+with [JELOS](https://github.com/JustEnoughLinuxOS/distribution).
+
+```shell
+CGO_ENABLED=1 CC=aarch64-linux-gnu-gcc GOOS=linux GOARCH=arm64 go build -tags drm
+```
+
+## Resources
+
+- <https://go.dev/>
+- <https://www.raylib.com/index.html>
+- <https://github.com/gen2brain/raylib-go>
+- <https://cupnooble.itch.io/sprout-lands-asset-pack>
+- <https://code.visualstudio.com/>
+- <https://soundcloud.com/harry-makes/averys-farm9>
+- <https://www.raylib.com/examples/textures/loader.html?name=textures_rectangle>
+- <https://www.raylib.com/examples/textures/loader.html?name=textures_sprite_anim>
