@@ -11,8 +11,8 @@ import (
 
 const (
 	// Based on the image in the asset pack
-	screenWidth  = 1000
-	screenHeight = 480
+	screenWidth  = 720
+	screenHeight = 720
 )
 
 var (
